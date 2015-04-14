@@ -53,13 +53,13 @@ class Crawler extends Command {
 
 		// if the client cannot connect to Collamine servers or response is 'not found'
 		if ($status_code !== 200 || $response->text() == 'not found') {
-		  // get the content from original website
-		  $response = $client->request('GET', $url);
+			// get the content from original website
+			$response = $client->request('GET', $url);
 		}
 
 		// get all the links from the current page
 		$links = $response->filter('a')->each(function (Symfony\Component\DomCrawler\Crawler $node, $i) {
-		  return $node->link()->getUri();
+			return $node->link()->getUri();
 		});
 
 		// echo "=== External Links =================\n";
