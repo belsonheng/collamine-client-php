@@ -66,7 +66,7 @@ class Crawler extends Command {
 	    
 		// remove external links
 		foreach ($links as $index => $link) {
-		    $this->output->writeln('Link: ' . $link);
+		    // $this->output->writeln('Link: ' . $link);
 		    $linkParts = parse_url($link);
 		    if (empty($linkParts['host']) || $linkParts['host'] !== $domain || $linkParts['scheme'] !== 'http') {
 		        unset($links[$index]);
@@ -75,9 +75,9 @@ class Crawler extends Command {
 
 		// echo "=== Internal Links =================\n";
 
-		foreach ($links as $link) {
-			$this->output->writeln('Link: ' . $link);
-		}
+		// foreach ($links as $link) {
+		// 	$this->output->writeln('Link: ' . $link);
+		// }
 
 		// remove links that we are not interested in 
 		$pattern = '/^(http:\\/\\/forums\\.hardwarezone\\.com\\.sg\\/money-mind-210\\/)(.*?)\\.html$/i';
@@ -87,7 +87,7 @@ class Crawler extends Command {
 			}
 		}
 
-		echo "=== Interested Links =================\n";
+		// echo "=== Interested Links =================\n";
 
 		foreach ($links as $link) {
 			$this->output->writeln('Link: ' . $link);
