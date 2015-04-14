@@ -64,34 +64,34 @@ class Crawler extends Command {
 
 		// echo "=== External Links =================\n";
 	    
-	    // remove external links
-	    foreach ($links as $index => $link) {
-	        $this->output->writeln('Link: ' . $link);
-	        $linkParts = parse_url($link);
-	        if (empty($linkParts['host']) || $linkParts['host'] !== $domain || $linkParts['scheme'] !== 'http') {
-	            unset($links[$index]);
-	        }
-	    }
+		// remove external links
+		foreach ($links as $index => $link) {
+		    $this->output->writeln('Link: ' . $link);
+		    $linkParts = parse_url($link);
+		    if (empty($linkParts['host']) || $linkParts['host'] !== $domain || $linkParts['scheme'] !== 'http') {
+		        unset($links[$index]);
+		    }
+		}
 
-	    // echo "=== Internal Links =================\n";
+		// echo "=== Internal Links =================\n";
 
-	    foreach ($links as $link) {
-	    	$this->output->writeln('Link: ' . $link);
-	    }
+		foreach ($links as $link) {
+			$this->output->writeln('Link: ' . $link);
+		}
 
-	    // remove links that we are not interested in 
-	    $pattern = '/^(http:\\/\\/forums\\.hardwarezone\\.com\\.sg\\/money-mind-210\\/)(.*?)\\.html$/i';
-	    foreach ($links as $key=>$link) {
-	    	if (!preg_match($pattern, $link)) {
-	    		unset($links[$key]);
-	    	}
-	    }
+		// remove links that we are not interested in 
+		$pattern = '/^(http:\\/\\/forums\\.hardwarezone\\.com\\.sg\\/money-mind-210\\/)(.*?)\\.html$/i';
+		foreach ($links as $key=>$link) {
+			if (!preg_match($pattern, $link)) {
+				unset($links[$key]);
+			}
+		}
 
-	    echo "=== Interested Links =================\n";
+		echo "=== Interested Links =================\n";
 
-	    foreach ($links as $link) {
-	    	$this->output->writeln('Link: ' . $link);
-	    }
+		foreach ($links as $link) {
+			$this->output->writeln('Link: ' . $link);
+		}
 
 		// echo "=== Response Body =================\n";
 
