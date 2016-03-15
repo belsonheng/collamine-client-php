@@ -15,9 +15,46 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function Index() 
 	{
-		return View::make('hello');
+		$domains = Document::select('domain')->groupBy('domain')->get();
+		return View::make('index', array('domains' => $domains));
+	}
+
+	public function RetrieveByCrawledDate()
+	{
+		if (Request::ajax()) {
+			$prev_total = Input::get('total');
+			$curr_total = Document::all()->count();
+			$collamine = 0; $original = 0;
+	        $difference = $curr_total - $prev_total;
+			foreach (Document::select('source')->orderBy('crawled_date', 'desc')->get()->take($difference) as $document) {
+				if ($document->source == 'collamine')
+					$collamine++;
+				if ($document->source == 'original')
+					$original++;
+			}
+            return [$original, $collamine];
+		}
+	}
+
+	public function RetrieveTotal()
+	{
+		if (Request::ajax())
+		   	return [Document::where('source', '=', 'collamine')->count(), Document::where('source', '=', 'original')->count(), Document::all()->count()];
+	}
+
+	public function RetrieveDoc()
+	{
+		if (Request::ajax())
+	        return Document::select('url')->orderBy('crawled_date', 'desc')->get()->take(10);
+	}
+
+
+	public function RetrieveDomains()
+	{
+		if (Request::ajax())
+			return Document::select(DB::raw('distinct domain as ddom'));
 	}
 
 }

@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', 'HomeController@Index');
 
-Route::get('/mytest', function()
-{
-	return 'Awesome';
-});
+Route::post('/linechart', 'HomeController@RetrieveByCrawledDate');
+
+Route::get('/total', 'HomeController@RetrieveTotal');
+
+Route::get('/documents', 'HomeController@RetrieveDoc');
+
+?>
