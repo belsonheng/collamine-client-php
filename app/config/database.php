@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'collamine_db',
+			'database'  => 'phpcrawler',
 			'username'  => 'root',
-			'password'  => 'password',
+			'password'  => 'a1b2c3d4e5',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCollamineTable extends Migration {
+class CreateDocumentTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateCollamineTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('collamine', function(Blueprint $table){
+		Schema::create('document', function(Blueprint $table){
 			$table->increments('id');
 			$table->string('url')->unique();
 			$table->string('domain');
@@ -29,7 +29,7 @@ class CreateCollamineTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('collamine');
+		Schema::drop('document');
 	}
 
 }
