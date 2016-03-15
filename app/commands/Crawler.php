@@ -51,7 +51,7 @@ class Crawler extends Command {
 		$now = Carbon::now(new DateTimeZone("Asia/Singapore"));
 
 		if ($pattern && !preg_match($pattern, $url)) {
-			$this->info('Sorry, ' . $url . ' does not match the pattern: ' . $pattern . '\n');
+			$this->info('Sorry, ' . $url . ' does not match the pattern: ' . $pattern . "\n");
 			return;
 		}
 
