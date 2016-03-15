@@ -8,7 +8,7 @@ $ composer update
 
 To run crawler command
 ```
-$ php artisan crawl http://forums.hardwarezone.com.sg/money-mind --pattern '/^(http:\\/\\/forums\\.hardwarezone\\.com\\.sg\\/money-mind-210\\/)(.*?)\\.html$/i'
+$ php artisan crawl http://forums.hardwarezone.com.sg/money-mind-210/ --pattern "/^(http:\\/\\/forums\\.hardwarezone\\.com\\.sg\\/money-mind-210\\/)(.*\\.html)?$/i"
 ```
 
 To start development server
