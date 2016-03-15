@@ -55,9 +55,15 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
+<<<<<<< HEAD
 			'database'  => 'phpcrawler',
 			'username'  => 'root',
 			'password'  => 'a1b2c3d4e5',
+=======
+			'database'  => 'database',
+			'username'  => 'root',
+			'password'  => '',
+>>>>>>> 84e743afa083d4ab37fda0623c4bea16bc5b53a3
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

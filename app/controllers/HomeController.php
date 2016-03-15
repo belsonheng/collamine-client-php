@@ -15,6 +15,7 @@ class HomeController extends BaseController {
 	|
 	*/
 
+<<<<<<< HEAD
 	public function Index() 
 	{
 		$domains = Document::select('domain')->groupBy('domain')->get();
@@ -55,6 +56,11 @@ class HomeController extends BaseController {
 	{
 		if (Request::ajax())
 			return Document::select(DB::raw('distinct domain as ddom'));
+=======
+	public function showWelcome()
+	{
+		return View::make('hello');
+>>>>>>> 84e743afa083d4ab37fda0623c4bea16bc5b53a3
 	}
 
 }

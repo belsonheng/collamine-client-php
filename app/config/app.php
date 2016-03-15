@@ -178,7 +178,10 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+<<<<<<< HEAD
 		'Carbon'          => 'Carbon\Carbon',
+=======
+>>>>>>> 84e743afa083d4ab37fda0623c4bea16bc5b53a3
 
 	),
 
