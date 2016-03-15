@@ -5,8 +5,7 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.0.*",
-		"fabpot/goutte": "*",
-		"guzzlehttp/guzzle": "~6.0"
+		"fabpot/goutte": "*"
 	},
 	"autoload": {
 		"classmap": [

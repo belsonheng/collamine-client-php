@@ -13,4 +13,5 @@ return array(
     'Document' => $baseDir . '/app/models/Document.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'TestCase' => $baseDir . '/app/tests/TestCase.php',
+    'User' => $baseDir . '/app/models/User.php',
 );
