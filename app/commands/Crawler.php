@@ -8,9 +8,9 @@ use GuzzleHttp\Exception\RequestException;
 
 class Crawler extends Command {
 
-	const COLLAMINE_DOWNLOAD_URL = 'http://172.20.131.150:9001/download/html/';
-	const COLLAMINE_UPLOAD_URL = 'http://172.20.131.150:9001/upload/html/multipart/';
-	
+	const COLLAMINE_DOWNLOAD_URL = 'http://172.31.22.135:9001/download/html/';
+	const COLLAMINE_UPLOAD_URL = 'http://172.31.22.135:9001/upload/html/multipart/';
+
 	/**
 	 * The console command name.
 	 *
@@ -47,22 +47,22 @@ class Crawler extends Command {
 		$url = $this->argument('url');
 		$pattern = $this->option('pattern');
 
-		$domain = parse_url($url, PHP_URL_HOST);		
-		$now = Carbon::now(new DateTimeZone("Asia/Singapore"));	
+		$domain = parse_url($url, PHP_URL_HOST);
+		$now = Carbon::now(new DateTimeZone("Asia/Singapore"));
 
 		if ($pattern && !preg_match($pattern, $url)) {
 			$this->info('Sorry, ' . $url . ' does not match the pattern: ' . $pattern . '\n');
 			return;
 		}
-		
-		// Add URL to the list of URLs to search. 
+
+		// Add URL to the list of URLs to search
 		$queue = array();
 		array_push($queue, $url);
 
 		// Array to store URLs that have been searched
 		$visited_urls = array();
 
-        $i = 0;
+                $i = 0;
 
 		// Take URL from the queue array
 		while (!empty($queue)) {
@@ -89,10 +89,10 @@ class Crawler extends Command {
 					$response = $client->request('GET', $queue_url);
 					$content = $client->getResponse()->getContent();
 					$source = 'original';
-				}	
+				}
 				else
 					$source = 'collamine';
-				
+
 				$this->comment('fetched from ' . $source);
 
 				// Insert new record only if it does not exists before
@@ -106,7 +106,7 @@ class Crawler extends Command {
 					                       'crawled_date' => $now));
 					$this->comment('saved');
 				}
-		
+
 				// Upload content to Collamine server if source is original
 				if ($source == 'original') {
 					$mem_size = 10 * 1024 * 1024;
@@ -116,15 +116,13 @@ class Crawler extends Command {
 
 					$name = substr($queue_url, strrpos($queue_url, '/') + 1);
 					$filename = "/tmp/" . $name;
-		
+
 					$this->info('Uploading to Collamine: ' . $queue_url);
-					
-					$ch = curl_init();
-					curl_setopt($ch, CURLOPT_URL, $this::COLLAMINE_UPLOAD_URL);
+
+					$ch = curl_init($this::COLLAMINE_UPLOAD_URL);
 					curl_setopt($ch, CURLOPT_HEADER, array('Content-Type' => 'multipart/form-data'));
-					curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 					curl_setopt($ch, CURLOPT_POST, true); // Set method to POST
-					curl_setopt($ch, CURLOPT_POSTFIELDS, array('domain' => $domain, 'url' => $queue_url, 'crawltime' => time(), 'contributor' => 'belson', 'document' => curl_file_create($filename, 'text/html', $filename)));
+					curl_setopt($ch, CURLOPT_POSTFIELDS, array('domain' => $domain, 'url' => $queue_url, 'crawltime' => time(), 'contributor' => 'belson', 'document' => curl_file_create(stream_get_meta_data($file)['uri'], 'text/html', $name)));
 					curl_exec($ch);
 					curl_close($ch);
 				}
