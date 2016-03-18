@@ -68,8 +68,6 @@
                              sliceVisibilityThreshold: 0,
                              backgroundColor: 'transparent',
                              fontSize: 14,
-                             width:750,
-                             height:450
                             };
 
               var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -90,8 +88,8 @@
           
           options = {
             backgroundColor: 'transparent',
-            width: 1200,
-            height: 500,
+            width: '100%',
+            height: '100%',
             vAxis: { title: 'No of Downloads', viewWindow:{ min:0} },
             hAxis: { title: 'Crawled Time' },
             pointSize: 5,
@@ -139,7 +137,7 @@
           drawLineChart();
           drawPieChart();
           retrieve();
-      }, 10000); 
+      }, 1000); 
   </script>
   </head>
 
@@ -202,8 +200,8 @@
                 <div class="panel-heading">
                   <h2><img src="img/linechart-img.png" style="height:18px; margin-top:-2px;" />&nbsp;&nbsp;&nbsp;&nbsp;<strong>Line Chart</strong></h2>
                 </div>
-                <div class="panel-body text-center" style="height:440px">
-                  <div id="line_chart" style="margin-top: -7%; margin-left: -5%; height: 300px; width:100%; "></div>
+                <div class="panel-body text-center" style="height:440px;">
+                  <div id="line_chart" style="height: 100%; width:100%;"></div>
                 </div>
               </div>
             </div>
@@ -215,7 +213,7 @@
                 </div>
                 <div class="panel-body text-center" style="height:440px">
                   <br>
-                  <div id = "piechart" style="margin-left: -5%; margin-top: -10%;"></div>
+                  <div id = "piechart" style="height: 100%; width:100%;"></div>
                 </div>
               </div>
             </div>
@@ -229,7 +227,7 @@
                   <h2><img src="img/globe-img.png" style="height:18px; margin-top:-2px;" />&nbsp;&nbsp;&nbsp;&nbsp;<strong>Recently Visited Documents</strong></h2>
                 </div>
                 <div>
-                  <div height="250px" border-spacing="10px" id='records_table'></div>
+                  <div height="250px" border-spacing="10px" id='records_table' style="margin-left:10px;"></div>
                 </div>
               </div>
             </div>
@@ -240,7 +238,7 @@
                 <div class="panel-heading">
                   <h2><img src="img/history-img.png" style="height:18px; margin-top:-2px;" />&nbsp;&nbsp;&nbsp;&nbsp;<strong>Suggested Domains</strong></h2>
                 </div>
-                <div>
+                <div style="margin-left:10px;">
                   <table>
                     <tbody>
                       <?php
